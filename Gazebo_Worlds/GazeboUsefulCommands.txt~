@@ -1,0 +1,4 @@
+Tips for using Gazebo
+
+Create and save worlds using MATLAB or Gazebo Editor.
+Worlds save as .xml file. This extension can be .xml or .world, it stores same data and is parsed same way. 

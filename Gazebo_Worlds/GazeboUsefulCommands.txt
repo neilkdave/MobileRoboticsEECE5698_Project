@@ -1,0 +1,13 @@
+Tips for using Gazebo
+
+Create and save worlds using MATLAB or Gazebo Editor.
+Worlds save as .xml file. This extension can be .xml or .world, it stores same data and is parsed same way. 
+
+MATLAB Tips and Commands:
+
+
+ROS Tips and Commands:
+
+
+To create turtlebot in world you design run follwing command:
+roslaunch turtlebot_gazebo turtlebot_world.launch world_file:= <Your directory to .xml or .world world file)
