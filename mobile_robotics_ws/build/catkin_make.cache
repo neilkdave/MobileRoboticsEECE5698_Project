@@ -1,0 +1,2 @@
+waypointnav
+-DCATKIN_DEVEL_PREFIX=/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install -G Unix Makefiles

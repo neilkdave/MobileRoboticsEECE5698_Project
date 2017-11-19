@@ -1,0 +1,8 @@
+prefix=/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install
+
+Name: waypointnav
+Description: Description of waypointnav
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install/lib 
+Requires: 
