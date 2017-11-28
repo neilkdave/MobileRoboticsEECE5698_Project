@@ -76,7 +76,7 @@ class GoToPose():
 
 if __name__ == '__main__':
     try:
-        rospy.init_node('nav_test', anonymous=False)
+        rospy.init_node('waypointnav_simple', anonymous=False)
 
         # Customize the following values so they are appropriate for your location
 	# x_wp1 = float(raw_input("Please enter x value: "))
