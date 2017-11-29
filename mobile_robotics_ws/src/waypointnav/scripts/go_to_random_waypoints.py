@@ -78,7 +78,7 @@ def getwp():
 	wps=[]
 	new_wps=[]
 	while len(wps) <5:
-	  tem =(rand.uniform(0,6),rand.uniform(0,3))
+	  tem =(rand.uniform(0,5),rand.uniform(0,3))
 	  x=0
 	  for item in wps:
 	    if dist(tem,item) <= 0.5:
@@ -86,7 +86,7 @@ def getwp():
 	  if x==0:
 		  wps.append(tem)
 	for item in wps:
-	  new_item =(mat.sqrt(item[0]**2+item[1]**2),item[0],item[1])
+	  new_item =(mat.sqrt(item[0]**2+item[1]**2),float(format(item[0],'.2f')),float(format(item[1],'.2f')))
 	  new_wps.append(new_item)
 	new_wps.sort()
 	return new_wps

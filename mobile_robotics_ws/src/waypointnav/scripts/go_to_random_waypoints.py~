@@ -76,6 +76,7 @@ def dist(p1, p2):
     
 def getwp():
 	wps=[]
+	new_wps=[]
 	while len(wps) <5:
 	  tem =(rand.uniform(0,6),rand.uniform(0,3))
 	  x=0
@@ -85,9 +86,10 @@ def getwp():
 	  if x==0:
 		  wps.append(tem)
 	for item in wps:
-	  item =(math.sqrt(item[0]**2+item[1]**2),item[0],item[1])
-	wps.sort()
-	return wps
+	  new_item =(mat.sqrt(item[0]**2+item[1]**2),item[0],item[1])
+	  new_wps.append(new_item)
+	new_wps.sort()
+	return new_wps
 		
 	    
 
@@ -101,7 +103,7 @@ if __name__ == '__main__':
         # position = {'x': x_wp1, 'y' : y_wp1}
 ########################################################### 1
         navigator = GoToPose()
-	position = {'x': wps[0][0], 'y' : wps[0][1]}
+	position = {'x': wps[0][1], 'y' : wps[0][2]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -116,7 +118,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 2
-        position = {'x': wps[1][0], 'y' : wps[1][1]}
+        position = {'x': wps[1][1], 'y' : wps[1][2]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -131,7 +133,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 3
-        position = {'x': wps[2][0], 'y' : wps[2][1]}
+        position = {'x': wps[2][1], 'y' : wps[2][2]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -146,7 +148,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 4
-        position = {'x': wps[3][0], 'y' : wps[3][1]}
+        position = {'x': wps[3][1], 'y' : wps[3][2]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -161,7 +163,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 5
-	position = {'x': wps[4][0], 'y' : wps[4][1]}
+	position = {'x': wps[4][1], 'y' : wps[4][2]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
