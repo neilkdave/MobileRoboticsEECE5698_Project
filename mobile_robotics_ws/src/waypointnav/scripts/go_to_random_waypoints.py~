@@ -77,13 +77,16 @@ def dist(p1, p2):
 def getwp():
 	wps=[]
 	while len(wps) <5:
-	  tem =(rand.uniform(0,2),rand.uniform(0,4))
+	  tem =(rand.uniform(0,6),rand.uniform(0,3))
 	  x=0
 	  for item in wps:
-	    if dist(tem,item) <= 0.25:
+	    if dist(tem,item) <= 0.5:
 		    x=1
 	  if x==0:
 		  wps.append(tem)
+	for item in wps:
+	  item =(math.sqrt(item[0]**2+item[1]**2),item[0],item[1])
+	wps.sort()
 	return wps
 		
 	    
