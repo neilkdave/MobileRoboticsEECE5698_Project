@@ -69,7 +69,7 @@ if __name__ == '__main__':
         # position = {'x': x_wp1, 'y' : y_wp1}
 ########################################################### 1
         navigator = GoToPose()
-	position = {'x': 1, 'y' : 0}
+	position = {'x': 3, 'y' : 2.4}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -84,8 +84,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 2
-        position = {'x': 1, 'y' : -1}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+        position = {'x': 4.75, 'y' : 1.47}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
@@ -99,8 +98,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 3
-        position = {'x': 2, 'y' : -1}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+        position = {'x': 5.3, 'y' : 3.6}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
@@ -114,8 +112,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 4
-        position = {'x': 2, 'y' : -2}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+        position = {'x': 7.57, 'y' : 2.58}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
@@ -123,7 +120,7 @@ if __name__ == '__main__':
         if success:
             rospy.loginfo("Hooray, I reached the 4th waypoint")
         else:
-		position = {'x': 1, 'y' : -2}
+		position = {'x': 1, 'y' : 2}
 		navigator.goto(position, quaternion)
         	rospy.loginfo("Shucks, I can't reach the 4th waypoint")
 
@@ -131,8 +128,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 5
-	position = {'x': 3, 'y' : -2}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+	position = {'x': 7.49, 'y' : 5.94}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
@@ -148,7 +144,6 @@ if __name__ == '__main__':
 
 ########################################################### Home
 	position = {'x': 0, 'y' : 0}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
         success = navigator.goto(position, quaternion)
