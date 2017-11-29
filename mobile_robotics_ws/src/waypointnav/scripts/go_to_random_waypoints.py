@@ -3,15 +3,10 @@
 '''
 Copyright (c) 2015, Mark Silliman
 All rights reserved.
-
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
 1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-
 2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-
 3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 '''
 
@@ -24,6 +19,8 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, Point, Quaternion
+import random as rand
+import math as mat
 
 class GoToPose():
     def __init__(self):
@@ -73,18 +70,35 @@ class GoToPose():
             self.move_base.cancel_goal()
         rospy.loginfo("Stop")
         rospy.sleep(1)
+    
+def dist(p1, p2):
+	return mat.sqrt((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2) 
+    
+def getwp():
+	wps=[]
+	while len(wps) <5:
+	  tem =(rand.uniform(0,5),rand.uniform(0,5))
+	  x=0
+	  for item in wps:
+	    if dist(tem,item) <= 0.5:
+		    x=1
+	  if x==0:
+		  wps.append(tem)
+	return wps
+		
+	    
 
 if __name__ == '__main__':
     try:
-        rospy.init_node('waypointnav_simple', anonymous=False)
-
+        rospy.init_node('nav_test', anonymous=False)
+	wps=getwp()
         # Customize the following values so they are appropriate for your location
 	# x_wp1 = float(raw_input("Please enter x value: "))
 	# y_wp1 = float(raw_input("Please enter y value: "))
         # position = {'x': x_wp1, 'y' : y_wp1}
 ########################################################### 1
         navigator = GoToPose()
-	position = {'x': 1, 'y' : 0}
+	position = {'x': wps[0][0], 'y' : wps[0][1]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -99,7 +113,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 2
-        position = {'x': 1, 'y' : -1}
+        position = {'x': wps[1][0], 'y' : wps[1][1]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -114,7 +128,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 3
-        position = {'x': 2, 'y' : -1}
+        position = {'x': wps[2][0], 'y' : wps[2][1]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -129,7 +143,7 @@ if __name__ == '__main__':
         rospy.sleep(1)
 
 ########################################################### 4
-        position = {'x': 2, 'y' : -2}
+        position = {'x': wps[3][0], 'y' : wps[3][1]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -138,15 +152,13 @@ if __name__ == '__main__':
         if success:
             rospy.loginfo("Hooray, I reached the 4th waypoint")
         else:
-		position = {'x': 1, 'y' : -2}
-		navigator.goto(position, quaternion)
-        	rospy.loginfo("Shucks, I can't reach the 4th waypoint")
+	    rospy.loginfo("Shucks, I can't reach the 4th waypoint")
 
         # Sleep to give the last log messages time to be sent
         rospy.sleep(1)
 
 ########################################################### 5
-	position = {'x': 3, 'y' : -2}
+	position = {'x': wps[4][0], 'y' : wps[4][1]}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
@@ -178,4 +190,3 @@ if __name__ == '__main__':
 
     except rospy.ROSInterruptException:
         rospy.loginfo("Ctrl-C caught. Quitting")
-

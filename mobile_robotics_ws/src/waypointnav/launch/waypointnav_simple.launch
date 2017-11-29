@@ -1,3 +1,5 @@
 <launch>
-	<node name="waypointnav" pkg="waypointnav" type="go_to_waypoints.py" required="true" output="screen"/>
+
+<node name="waypointnav" pkg="waypointnav" type="go_to_waypoints.py"  output="screen"/>
+
 </launch>

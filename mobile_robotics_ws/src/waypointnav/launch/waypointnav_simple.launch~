@@ -1,0 +1,5 @@
+<launch>
+
+<node name="waypointnav" pkg="waypointnav" type="go_to_specific_point_on_map.py"  output="screen"/>
+
+</launch>
