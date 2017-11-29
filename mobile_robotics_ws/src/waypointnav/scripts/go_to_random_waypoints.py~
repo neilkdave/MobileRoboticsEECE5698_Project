@@ -77,10 +77,10 @@ def dist(p1, p2):
 def getwp():
 	wps=[]
 	while len(wps) <5:
-	  tem =(rand.uniform(0,5),rand.uniform(0,5))
+	  tem =(rand.uniform(0,2),rand.uniform(0,4))
 	  x=0
 	  for item in wps:
-	    if dist(tem,item) <= 0.5:
+	    if dist(tem,item) <= 0.25:
 		    x=1
 	  if x==0:
 		  wps.append(tem)
@@ -91,7 +91,7 @@ def getwp():
 if __name__ == '__main__':
     try:
         rospy.init_node('nav_test', anonymous=False)
-	getwp()
+	wps=getwp()
         # Customize the following values so they are appropriate for your location
 	# x_wp1 = float(raw_input("Please enter x value: "))
 	# y_wp1 = float(raw_input("Please enter y value: "))
