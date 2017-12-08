@@ -5,4 +5,6 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 SUBDIRS(gtest)
+SUBDIRS(apriltags_ros/apriltags)
+SUBDIRS(apriltags_ros/apriltags_ros)
 SUBDIRS(waypointnav)

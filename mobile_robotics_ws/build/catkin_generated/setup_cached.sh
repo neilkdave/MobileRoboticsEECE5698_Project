@@ -7,5 +7,9 @@
 # new environment variables
 
 # modified environment variables
-export LD_LIBRARY_PATH="/opt/ros/indigo/lib/x86_64-linux-gnu:/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib:/home/user/mobile_robotics_ws/devel/lib:/opt/ros/indigo/lib:/opt/ros/indigo/lib/python2.7/dist-packages:/opt/ros/indigo/lib/python2.7/dist-packages:/opt/ros/indigo/lib/python2.7/dist-packages"
+export CMAKE_PREFIX_PATH="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib:/opt/ros/indigo/lib/x86_64-linux-gnu:/opt/ros/indigo/lib:/opt/ros/indigo/lib/python2.7/dist-packages"
+export PKG_CONFIG_PATH="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib/pkgconfig:/opt/ros/indigo/lib/x86_64-linux-gnu/pkgconfig:/opt/ros/indigo/lib/pkgconfig"
 export PWD="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build"
+export ROSLISP_PACKAGE_DIRECTORIES="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/share/common-lisp"
+export ROS_PACKAGE_PATH="/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src:$ROS_PACKAGE_PATH"
