@@ -17,7 +17,8 @@
       {id: 1, size: 0.1005, frame_id: fucking_happy_thoughts},
       {id: 2, size: 0.1005, frame_id: more_fucking_happy_thoughts},
       {id: 3, size: 0.1005, frame_id: jesus_more_fucking_happy_thoughts},
-      {id: 4, size: 0.1005, frame_id: fuuuuuuuuuuckkkkkk}]
+      {id: 4, size: 0.1005, frame_id: fuuuuuuuuuuckkkkkk},
+      {id: 5, size: 0.1005, frame_id: five}]
     </rosparam>
   </node>
 </launch>
