@@ -11,7 +11,39 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, Point, Quaternion
-# from apriltags_ros import AprilTagDetection
+from apriltags_ros.msg import AprilTagDetection
+from tf2_msgs.msg import TFMessage
+
+detected = [False, False, False, False, False]
+translationx = ["0","0","0","0","0"]
+translationy = ["0","0","0","0","0"]
+translationz = ["0","0","0","0","0"]
+rotationx = ["0","0","0","0","0"]
+rotationy = ["0","0","0","0","0"]
+rotationz = ["0","0","0","0","0"]
+rotationw = ["0","0","0","0","0"]
+
+def callback(data):
+    # rospy.loginfo("DICKS IN MY")
+    # rospy.loginfo(data.transforms[0])
+   
+
+    if data.transforms[0].child_frame_id == "happy_thoughts": #and detected[0] == None:
+       translationx[0] = data.transforms[0].transform.translation.x
+       translationy[0] = data.transforms[0].transform.translation.y
+       translationz[0] = data.transforms[0].transform.translation.z
+       rospyloginfo("#1")
+
+    if sum(detected) == 5:
+       rospyloginfo("IGOTTHEMALLDONTIGNORETHISAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+       rospyloginfo(translationx)
+       rospyloginfo(translationy)
+       rospyloginfo(translationz)
+def listener():
+    #rospy.init_node('listener', anonymous=True)
+    rospy.Subscriber('tf',TFMessage,callback)
+    rospy.spin()
+
 class GoToPose():
     def __init__(self):
 
@@ -20,6 +52,8 @@ class GoToPose():
 	# What to do if shut down (e.g. Ctrl-C or failure)
 	rospy.on_shutdown(self.shutdown)
 	
+   
+  
 	# Tell the action client that we want to spin a thread by default
 	self.move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
 	rospy.loginfo("Wait for the action server to come up")
@@ -61,6 +95,8 @@ class GoToPose():
         rospy.loginfo("Stop")
         rospy.sleep(1)
 
+  
+
 if __name__ == '__main__':
     try:
         rospy.init_node('nav_test', anonymous=False)
@@ -71,6 +107,7 @@ if __name__ == '__main__':
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
 	rospy.loginfo(Point());
         rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
+        listener();
       #  success = navigator.goto(position, quaternion)
 
       #  if success:
@@ -79,7 +116,7 @@ if __name__ == '__main__':
         #    rospy.loginfo("The base failed to reach the desired pose")
 
         # Sleep to give the last log messages time to be sent
-        rospy.sleep(1)
+      #  rospy.sleep(1)
 
     except rospy.ROSInterruptException:
         rospy.loginfo("Ctrl-C caught. Quitting")
