@@ -13,6 +13,9 @@ from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, Point, Quaternion
 from apriltags_ros.msg import AprilTagDetection
 from tf2_msgs.msg import TFMessage
+from tf import TransformListener
+
+
 
 detected = [False, False, False, False, False, False]
 basex = "0"
@@ -29,11 +32,10 @@ rotationw = ["0","0","0","0","0", "0"]
 
 def callback(data):
     # rospy.loginfo("DICKS IN MY")
-    rospy.loginfo(data.transforms[0])
-   
+   # rospy.loginfo(data.transforms[0])
     
     if data.transforms[0].child_frame_id == "happy_thoughts" and detected [0] == False: 
-      if canTransform(data)
+   #   if canTransform(data)
        translationx[0] = data.transforms[0].transform.translation.x
        translationy[0] = data.transforms[0].transform.translation.y
        translationz[0] = data.transforms[0].transform.translation.z
