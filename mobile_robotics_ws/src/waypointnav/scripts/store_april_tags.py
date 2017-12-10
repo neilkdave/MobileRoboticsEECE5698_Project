@@ -35,7 +35,7 @@ rotationw    = ["0","0","0","0","0","0"]
 class GoToPose():
     
     def __init__(self):
-        #self.tf = TransformListener()
+        self.tf = TransformListener()
         self.goal_sent = False
 
 	# What to do if shut down (e.g. Ctrl-C or failure)
@@ -86,12 +86,37 @@ class GoToPose():
         rospy.sleep(1)
         
     def callback(self,data):
-        rospy.loginfo(data.transforms[0])
-##        if self.tf.frameExists("/base_link") and self.tf.frameExists("/map"):
-##            t = self.tf.getLatestCommonTime("/base_link", "/map")
-##            position, quaternion = self.tf.lookupTransform("/base_link", "/map", t)
-##            pospy.loginfo(position, quaternion)
-       
+        #rospy.loginfo(data.transforms[0])
+        if self.tf.frameExists("/happy_thoughts") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/happy_thoughts", "/map")
+            position, quaternion = self.tf.lookupTransform("/happy_thoughts", "/map", t)
+            rospy.loginfo(position)
+
+        if self.tf.frameExists("/fucking_happy_thoughts") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/fucking_happy_thoughts", "/map")
+            position, quaternion = self.tf.lookupTransform("/fucking_happy_thoughts", "/map", t)
+            rospy.loginfo(position)
+
+        if self.tf.frameExists("/more_fucking_happy_thoughts") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/more_fucking_happy_thoughts", "/map")
+            position, quaternion = self.tf.lookupTransform("/more_fucking_happy_thoughts", "/map", t)
+            rospy.loginfo(position)
+
+        if self.tf.frameExists("/jesus_more_fucking_happy_thoughts") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/jesus_more_fucking_happy_thoughts", "/map")
+            position, quaternion = self.tf.lookupTransform("/jesus_more_fucking_happy_thoughts", "/map", t)
+            rospy.loginfo(position)
+
+        if self.tf.frameExists("/fuuuuuuuuuuckkkkkk") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/fuuuuuuuuuuckkkkkk", "/map")
+            position, quaternion = self.tf.lookupTransform("/fuuuuuuuuuuckkkkkk", "/map", t)
+            rospy.loginfo(position)
+
+        if self.tf.frameExists("/five") and self.tf.frameExists("/map"):
+            t = self.tf.getLatestCommonTime("/five", "/map")
+            position, quaternion = self.tf.lookupTransform("/five", "/map", t)
+            rospy.loginfo(position)
+            
         if data.transforms[0].child_frame_id == "happy_thoughts" and detected [0] == False: 
            translationx[0] = data.transforms[0].transform.translation.x
            translationy[0] = data.transforms[0].transform.translation.y
@@ -144,10 +169,10 @@ class GoToPose():
         position = {'x': .5, 'y' : 1}
         quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
         #rospy.init_node('listener', anonymous = True)
-        rospy.sleep(30); #Game plan for now is to map tags in teleop, store coordinates, when all tags hit, sleep, close out of teleop, then begin navigtion routine to all tags.
+        #rospy.sleep(30); #Game plan for now is to map tags in teleop, store coordinates, when all tags hit, sleep, close out of teleop, then begin navigtion routine to all tags.
         rospy.Subscriber('tf',TFMessage,self.callback)
         if initialrun == True:
-            success = self.goto(position, quaternion)
+           # success = self.goto(position, quaternion)
             initialrun = False
         rospy.spin()
   
