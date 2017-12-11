@@ -1,8 +1,8 @@
-prefix=/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel
+prefix=/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel
 
 Name: waypointnav
 Description: Description of waypointnav
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib 
+Libs: -L/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib 
 Requires: 

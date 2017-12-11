@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src
+CMAKE_SOURCE_DIR = /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build
+CMAKE_BINARY_DIR = /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -120,14 +120,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/CMakeFiles/progress.marks
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles 0
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/CMakeFiles/progress.marks
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/clean
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/clean
 .PHONY : clean
 
 # The main clean target
@@ -136,17 +136,17 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/preinstall
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/preinstall
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(MAKE) -f CMakeFiles/Makefile2 waypointnav/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Help Target
@@ -173,6 +173,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
