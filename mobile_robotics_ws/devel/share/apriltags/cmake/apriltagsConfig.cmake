@@ -67,14 +67,14 @@ set(apriltags_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("TRUE" STREQUAL "TRUE")
-  set(apriltags_SOURCE_PREFIX /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags)
-  set(apriltags_DEVEL_PREFIX /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel)
+  set(apriltags_SOURCE_PREFIX /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags_ros/apriltags)
+  set(apriltags_DEVEL_PREFIX /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel)
   set(apriltags_INSTALL_PREFIX "")
   set(apriltags_PREFIX ${apriltags_DEVEL_PREFIX})
 else()
   set(apriltags_SOURCE_PREFIX "")
   set(apriltags_DEVEL_PREFIX "")
-  set(apriltags_INSTALL_PREFIX /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install)
+  set(apriltags_INSTALL_PREFIX /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install)
   set(apriltags_PREFIX ${apriltags_INSTALL_PREFIX})
 endif()
 
@@ -91,9 +91,9 @@ endif()
 # flag project as catkin-based to distinguish if a find_package()-ed project is a catkin project
 set(apriltags_FOUND_CATKIN_PROJECT TRUE)
 
-if(NOT "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags/include;/usr/include/eigen3;/usr/include/opencv;/usr/include " STREQUAL " ")
+if(NOT "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags_ros/apriltags/include;/usr/include/eigen3;/usr/include/opencv;/usr/include " STREQUAL " ")
   set(apriltags_INCLUDE_DIRS "")
-  set(_include_dirs "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags/include;/usr/include/eigen3;/usr/include/opencv;/usr/include")
+  set(_include_dirs "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags_ros/apriltags/include;/usr/include/eigen3;/usr/include/opencv;/usr/include")
   foreach(idir ${_include_dirs})
     if(IS_ABSOLUTE ${idir} AND IS_DIRECTORY ${idir})
       set(include ${idir})
@@ -103,7 +103,7 @@ if(NOT "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/aprilta
         message(FATAL_ERROR "Project 'apriltags' specifies '${idir}' as an include dir, which is not found.  It does not exist in '${include}'.  Ask the maintainer 'Mitchell Wills <mwills@wpi.edu>' to fix it.")
       endif()
     else()
-      message(FATAL_ERROR "Project 'apriltags' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags/${idir}'.  Ask the maintainer 'Mitchell Wills <mwills@wpi.edu>' to fix it.")
+      message(FATAL_ERROR "Project 'apriltags' specifies '${idir}' as an include dir, which is not found.  It does neither exist as an absolute directory nor in '/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/apriltags_ros/apriltags_ros/apriltags/${idir}'.  Ask the maintainer 'Mitchell Wills <mwills@wpi.edu>' to fix it.")
     endif()
     _list_append_unique(apriltags_INCLUDE_DIRS ${include})
   endforeach()
@@ -122,7 +122,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib;/opt/ros/indigo/lib)
+    foreach(path /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/devel/lib;/home/agang/catkin_ws/devel/lib;/opt/ros/indigo/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)

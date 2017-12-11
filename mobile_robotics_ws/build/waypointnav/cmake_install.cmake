@@ -1,8 +1,8 @@
-# Install script for directory: /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/waypointnav
+# Install script for directory: /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/waypointnav
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  SET(CMAKE_INSTALL_PREFIX "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install")
+  SET(CMAKE_INSTALL_PREFIX "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/install")
 ENDIF(NOT DEFINED CMAKE_INSTALL_PREFIX)
 STRING(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnav.pc")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnav.pc")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/waypointnav/cmake" TYPE FILE FILES
-    "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnavConfig.cmake"
-    "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnavConfig-version.cmake"
+    "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnavConfig.cmake"
+    "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/waypointnav/catkin_generated/installspace/waypointnavConfig-version.cmake"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/waypointnav" TYPE FILE FILES "/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/waypointnav/package.xml")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/waypointnav" TYPE FILE FILES "/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/src/waypointnav/package.xml")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
