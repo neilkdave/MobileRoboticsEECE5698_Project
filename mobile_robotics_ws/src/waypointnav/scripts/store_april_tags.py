@@ -23,6 +23,8 @@ basex        = "0"
 basey        = "0"
 basez        = "0"
 tagframe1    = "0"
+position = ["0","1","2","3","0","0"]
+quaternion = ["0","0","0","0","0","0"]
 translationx = ["0","1","0","0","0","0"]
 translationy = ["0","0","0","0","0","0"]
 translationz = ["0","0","0","0","0","0"]
@@ -87,82 +89,108 @@ class GoToPose():
         
     def callback(self,data):
         #rospy.loginfo(data.transforms[0])
-        if self.tf.frameExists("/happy_thoughts") and self.tf.frameExists("/map"):
+       # global position
+       # global quaternion
+
+        if self.tf.frameExists("/happy_thoughts") and self.tf.frameExists("/map") and detected[0] == False:
             t = self.tf.getLatestCommonTime("/happy_thoughts", "/map")
-            position, quaternion = self.tf.lookupTransform("/happy_thoughts", "/map", t)
-            rospy.loginfo(position)
+            position[0], quaternion[0] = self.tf.lookupTransform("/happy_thoughts", "/map", t)
+            rospy.loginfo("#0")
+            temppos = {'x': position[0][0], 'y': position[0][2]}
+            rospy.loginfo(temppos)
+            detected[0] = True
 
-        if self.tf.frameExists("/fucking_happy_thoughts") and self.tf.frameExists("/map"):
+        if self.tf.frameExists("/fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[1] == False:
             t = self.tf.getLatestCommonTime("/fucking_happy_thoughts", "/map")
-            position, quaternion = self.tf.lookupTransform("/fucking_happy_thoughts", "/map", t)
-            rospy.loginfo(position)
+            position[1], quaternion[1] = self.tf.lookupTransform("/fucking_happy_thoughts", "/map", t)
+            rospy.loginfo("#1")
+            temppos = {'x': position[1][0], 'y': position[1][2]}
+            rospy.loginfo(temppos)
+            detected[1] = True
 
-        if self.tf.frameExists("/more_fucking_happy_thoughts") and self.tf.frameExists("/map"):
+        if self.tf.frameExists("/more_fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[2] == False:
             t = self.tf.getLatestCommonTime("/more_fucking_happy_thoughts", "/map")
-            position, quaternion = self.tf.lookupTransform("/more_fucking_happy_thoughts", "/map", t)
-            rospy.loginfo(position)
+            position[2], quaternion[2] = self.tf.lookupTransform("/more_fucking_happy_thoughts", "/map", t)
+            rospy.loginfo("#2")
+            temppos = {'x': position[2][0], 'y': position[2][2]}
+            rospy.loginfo(temppos)
+            detected[2] = True
 
-        if self.tf.frameExists("/jesus_more_fucking_happy_thoughts") and self.tf.frameExists("/map"):
+        if self.tf.frameExists("/jesus_more_fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[3] == False:
             t = self.tf.getLatestCommonTime("/jesus_more_fucking_happy_thoughts", "/map")
-            position, quaternion = self.tf.lookupTransform("/jesus_more_fucking_happy_thoughts", "/map", t)
-            rospy.loginfo(position)
+            position[3], quaternion[3] = self.tf.lookupTransform("/jesus_more_fucking_happy_thoughts", "/map", t)
+            rospy.loginfo("#3")
+            temppos = {'x': position[3][0], 'y': position[3][2]}
+            rospy.loginfo(temppos)
+            detected[3] = True
 
-        if self.tf.frameExists("/fuuuuuuuuuuckkkkkk") and self.tf.frameExists("/map"):
+        if self.tf.frameExists("/fuuuuuuuuuuckkkkkk") and self.tf.frameExists("/map") and detected[4] == False:
             t = self.tf.getLatestCommonTime("/fuuuuuuuuuuckkkkkk", "/map")
-            position, quaternion = self.tf.lookupTransform("/fuuuuuuuuuuckkkkkk", "/map", t)
-            rospy.loginfo(position)
+            position[4], quaternion[4] = self.tf.lookupTransform("/fuuuuuuuuuuckkkkkk", "/map", t)
+            rospy.loginfo("#4")
+            temppos = {'x': position[]4[0], 'y': position[4][2]}
+            rospy.loginfo(temppos)
+            detected[4] = True
 
-        if self.tf.frameExists("/five") and self.tf.frameExists("/map"):
+        if self.tf.frameExists("/five") and self.tf.frameExists("/map") and detected[5] == False:
             t = self.tf.getLatestCommonTime("/five", "/map")
-            position, quaternion = self.tf.lookupTransform("/five", "/map", t)
-            rospy.loginfo(position)
+            position[5], quaternion[5] = self.tf.lookupTransform("/five", "/map", t)
+            rospy.loginfo("#5")
+            temppos = {'x': position[2][0], 'y': position[2][2]}
+            rospy.loginfo(temppos)
+            detected[5] = True
             
-        if data.transforms[0].child_frame_id == "happy_thoughts" and detected [0] == False: 
-           translationx[0] = data.transforms[0].transform.translation.x
-           translationy[0] = data.transforms[0].transform.translation.y
-           translationz[0] = data.transforms[0].transform.translation.z
-           rospy.loginfo("#1")
-           detected[0] = True
-
-        if data.transforms[0].child_frame_id == "fucking_happy_thoughts" and detected[1] == False:
-           translationx[1] = data.transforms[0].transform.translation.x
-           translationy[1] = data.transforms[0].transform.translation.y
-           translationz[1] = data.transforms[0].transform.translation.z
-           rospy.loginfo("#2")
-           detected[1] = True
-    
-        if data.transforms[0].child_frame_id == "more_fucking_happy_thoughts" and detected[2] == False:
-           translationx[2] = data.transforms[0].transform.translation.x
-           translationy[2] = data.transforms[0].transform.translation.y
-           translationz[2] = data.transforms[0].transform.translation.z
-           rospy.loginfo(data.transforms[0].transform.translation)
-           rospy.loginfo("#3")
-           detected[2] = True   
-    
-        if data.transforms[0].child_frame_id == "jesus_more_fucking_happy_thoughts" and detected[3] == False:
-           translationx[3] = data.transforms[0].transform.translation.x
-           translationy[3] = data.transforms[0].transform.translation.y
-           translationz[3] = data.transforms[0].transform.translation.z
-           rospy.loginfo("#4")
-           detected[3] = True
-    
-        if data.transforms[0].child_frame_id == "fuuuuuuuuuuckkkkkk" and detected[4] == False:
-           translationx[4] = data.transforms[0].transform.translation.x
-           translationy[4] = data.transforms[0].transform.translation.y
-           translationz[4] = data.transforms[0].transform.translation.z
-           rospy.loginfo("#5")
-           detected[4] = True
-
-        if data.transforms[0].child_frame_id == "five" and detected[5] == False:
-           translationx[5] = data.transforms[0].transform.translation.x
-           translationy[5] = data.transforms[0].transform.translation.y
-           translationz[5] = data.transforms[0].transform.translation.z
-           rospy.loginfo("#5")
-           detected[5] = True
+##        if data.transforms[0].child_frame_id == "happy_thoughts" and detected [0] == False: 
+##           translationx[0] = data.transforms[0].transform.translation.x
+##           translationy[0] = data.transforms[0].transform.translation.y
+##           translationz[0] = data.transforms[0].transform.translation.z
+##           rospy.loginfo("#1")
+##           detected[0] = True
+##
+##        if data.transforms[0].child_frame_id == "fucking_happy_thoughts" and detected[1] == False:
+##           translationx[1] = data.transforms[0].transform.translation.x
+##           translationy[1] = data.transforms[0].transform.translation.y
+##           translationz[1] = data.transforms[0].transform.translation.z
+##           rospy.loginfo("#2")
+##           detected[1] = True
+##    
+##        if data.transforms[0].child_frame_id == "more_fucking_happy_thoughts" and detected[2] == False:
+##           translationx[2] = data.transforms[0].transform.translation.x
+##           translationy[2] = data.transforms[0].transform.translation.y
+##           translationz[2] = data.transforms[0].transform.translation.z
+##           rospy.loginfo(data.transforms[0].transform.translation)
+##           rospy.loginfo("#3")
+##           detected[2] = True   
+##    
+##        if data.transforms[0].child_frame_id == "jesus_more_fucking_happy_thoughts" and detected[3] == False:
+##           translationx[3] = data.transforms[0].transform.translation.x
+##           translationy[3] = data.transforms[0].transform.translation.y
+##           translationz[3] = data.transforms[0].transform.translation.z
+##           rospy.loginfo("#4")
+##           detected[3] = True
+##    
+##        if data.transforms[0].child_frame_id == "fuuuuuuuuuuckkkkkk" and detected[4] == False:
+##           translationx[4] = data.transforms[0].transform.translation.x
+##           translationy[4] = data.transforms[0].transform.translation.y
+##           translationz[4] = data.transforms[0].transform.translation.z
+##           rospy.loginfo("#5")
+##           detected[4] = True
+##
+##        if data.transforms[0].child_frame_id == "five" and detected[5] == False:
+##           translationx[5] = data.transforms[0].transform.translation.x
+##           translationy[5] = data.transforms[0].transform.translation.y
+##           translationz[5] = data.transforms[0].transform.translation.z
+##           rospy.loginfo("#5")
+##           detected[5] = True
 
         if sum(detected) == 6:
           rospy.loginfo("youdidit");
-          rospy.loginfo(translationx);
+          rospy.sleep(30);
+          success = self.goto(position[0], quaternion[0])
+          if success:
+            rospy.loginfo("Hooray, reached the desired pose")
+          else:
+            rospy.loginfo("The base failed to reach the desired pose")
 
     def listener(self):
         global initialrun
