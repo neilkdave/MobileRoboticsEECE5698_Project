@@ -1,23 +1,23 @@
 Determining if the pthread_create exist failed with the following output:
-Change Dir: /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec3945159816/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec3945159816.dir/build.make CMakeFiles/cmTryCompileExec3945159816.dir/build
-make[1]: Entering directory `/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
-/usr/bin/cmake -E cmake_progress_report /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec3945159816.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3945159816.dir/CheckSymbolExists.c.o   -c /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTryCompileExec3945159816
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3945159816.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTryCompileExec3945159816.dir/CheckSymbolExists.c.o  -o cmTryCompileExec3945159816 -rdynamic 
-CMakeFiles/cmTryCompileExec3945159816.dir/CheckSymbolExists.c.o: In function `main':
+Run Build Command:/usr/bin/make "cmTryCompileExec1347656504/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec1347656504.dir/build.make CMakeFiles/cmTryCompileExec1347656504.dir/build
+make[1]: Entering directory `/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1347656504.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1347656504.dir/CheckSymbolExists.c.o   -c /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1347656504
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1347656504.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1347656504.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1347656504 -rdynamic 
+CMakeFiles/cmTryCompileExec1347656504.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTryCompileExec3945159816] Error 1
-make[1]: Leaving directory `/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
-make: *** [cmTryCompileExec3945159816/fast] Error 2
+make[1]: *** [cmTryCompileExec1347656504] Error 1
+make[1]: Leaving directory `/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec1347656504/fast] Error 2
 
-File /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+File /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
 #include <pthread.h>
 
@@ -33,21 +33,21 @@ int main(int argc, char** argv)
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
-Change Dir: /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp
+Change Dir: /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:/usr/bin/make "cmTryCompileExec2688959514/fast"
-/usr/bin/make -f CMakeFiles/cmTryCompileExec2688959514.dir/build.make CMakeFiles/cmTryCompileExec2688959514.dir/build
-make[1]: Entering directory `/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
-/usr/bin/cmake -E cmake_progress_report /home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CMakeFiles 1
-Building C object CMakeFiles/cmTryCompileExec2688959514.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec2688959514.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
-Linking C executable cmTryCompileExec2688959514
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2688959514.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec2688959514.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2688959514 -rdynamic -lpthreads 
+Run Build Command:/usr/bin/make "cmTryCompileExec66311330/fast"
+/usr/bin/make -f CMakeFiles/cmTryCompileExec66311330.dir/build.make CMakeFiles/cmTryCompileExec66311330.dir/build
+make[1]: Entering directory `/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec66311330.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec66311330.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-2.8/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec66311330
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec66311330.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec66311330.dir/CheckFunctionExists.c.o  -o cmTryCompileExec66311330 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [cmTryCompileExec2688959514] Error 1
-make[1]: Leaving directory `/home/user/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
-make: *** [cmTryCompileExec2688959514/fast] Error 2
+make[1]: *** [cmTryCompileExec66311330] Error 1
+make[1]: Leaving directory `/home/agang/MobileRoboticsEECE5698_Project/mobile_robotics_ws/build/CMakeFiles/CMakeTmp'
+make: *** [cmTryCompileExec66311330/fast] Error 2
 
 

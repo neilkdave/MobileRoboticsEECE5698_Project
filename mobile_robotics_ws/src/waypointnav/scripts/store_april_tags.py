@@ -11,7 +11,7 @@ from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, Point, Quaternion
-from apriltags_ros.msg import AprilTagDetection
+#from apriltags_ros.msg import AprilTagDetection
 from tf2_msgs.msg import TFMessage
 from tf import TransformListener
 
@@ -152,9 +152,14 @@ class GoToPose():
             tempos, temqua = self.tf.lookupTransform("/map", "/fuuuuuuuuuuckkkkkk", self.tf.getLatestCommonTime("/map", "/fuuuuuuuuuuckkkkkk"))
 
             rospy.loginfo("#4")
+<<<<<<< HEAD
             position[4] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
             quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
             rospy.loginfo(position[4])
+=======
+            temppos = {'x': position[4][0], 'y': position[4][2]}
+            rospy.loginfo(temppos)
+>>>>>>> 8effdfff6d057eabd674ba631d8af04f11bb3cc2
             detected[4] = True
 
         if self.tf.frameExists("/five") and self.tf.frameExists("/map") and detected[5] == False:
