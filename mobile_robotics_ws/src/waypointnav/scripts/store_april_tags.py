@@ -15,23 +15,13 @@ from apriltags_ros.msg import AprilTagDetection
 from tf2_msgs.msg import TFMessage
 from tf import TransformListener
 
-
-
 detected = [False, False, False, False, False, False]
 initialrun = True;
-basex        = "0"
-basey        = "0"
-basez        = "0"
 tagframe1    = "0"
-position = ["0","1","2","3","0","0"]
+position = ["0","0","0","0","0","0"]
 quaternion = ["0","0","0","0","0","0"]
-translationx = ["0","1","0","0","0","0"]
-translationy = ["0","0","0","0","0","0"]
-translationz = ["0","0","0","0","0","0"]
-rotationx    = ["0","0","0","0","0","0"]
-rotationy    = ["0","0","0","0","0","0"]
-rotationz    = ["0","0","0","0","0","0"]
-rotationw    = ["0","0","0","0","0","0"]
+quaternion_true = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+curr_pos = {'x': 0, 'y': 0, 'z': 0}
      
    
 class GoToPose():
@@ -86,119 +76,122 @@ class GoToPose():
             self.move_base.cancel_goal()
         rospy.loginfo("Stop")
         rospy.sleep(1)
-        
+    
+    #Go to globally saved position num
+    def return_to_sender(self, num):
+        rospy.loginfo("Go to (%s, %s) pose", position[num]['x'], position[num]['y'])
+        success = navigator.goto(position[num], quaternion_true)
+
+        if success:
+            rospy.loginfo("Hooray, I reached waypoint %s",num)
+        else:
+            rospy.loginfo("Shucks, I can't reach waypoint %s",num)
+
+        # Sleep to give the last log messages time to be sent
+        rospy.sleep(1)
+	return success
+
     def callback(self,data):
-        #rospy.loginfo(data.transforms[0])
-       # global position
-       # global quaternion
+
+	# rospy.loginfo(data.transforms[0].child_frame_id)
+	if data.transforms[0].child_frame_id == 'base_footprint':
+	    curr_pos = {'x': data.transforms[0].transform.translation.x, 'y': data.transforms[0].transform.translation.y, 'z': data.transforms[0].transform.translation.z}
+	    # rospy.loginfo(curr_pos)
+
+	if sum(detected) == 6:
+	    return
 
         if self.tf.frameExists("/happy_thoughts") and self.tf.frameExists("/map") and detected[0] == False:
-            t = self.tf.getLatestCommonTime("/happy_thoughts", "/map")
-            position[0], quaternion[0] = self.tf.lookupTransform("/happy_thoughts", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/happy_thoughts", self.tf.getLatestCommonTime("/map", "/happy_thoughts"))
+
             rospy.loginfo("#0")
-            temppos = {'x': position[0][0], 'y': position[0][2]}
-            rospy.loginfo(temppos)
+            position[0] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[0])
+            # rospy.loginfo(quaternion[0])
             detected[0] = True
 
         if self.tf.frameExists("/fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[1] == False:
-            t = self.tf.getLatestCommonTime("/fucking_happy_thoughts", "/map")
-            position[1], quaternion[1] = self.tf.lookupTransform("/fucking_happy_thoughts", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/fucking_happy_thoughts", self.tf.getLatestCommonTime("/map", "/fucking_happy_thoughts"))
+
             rospy.loginfo("#1")
-            temppos = {'x': position[1][0], 'y': position[1][2]}
-            rospy.loginfo(temppos)
+            position[1] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[1])
             detected[1] = True
 
         if self.tf.frameExists("/more_fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[2] == False:
-            t = self.tf.getLatestCommonTime("/more_fucking_happy_thoughts", "/map")
-            position[2], quaternion[2] = self.tf.lookupTransform("/more_fucking_happy_thoughts", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/more_fucking_happy_thoughts", self.tf.getLatestCommonTime("/map", "/more_fucking_happy_thoughts"))
+
             rospy.loginfo("#2")
-            temppos = {'x': position[2][0], 'y': position[2][2]}
-            rospy.loginfo(temppos)
+            position[2] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[2])
             detected[2] = True
 
         if self.tf.frameExists("/jesus_more_fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[3] == False:
-            t = self.tf.getLatestCommonTime("/jesus_more_fucking_happy_thoughts", "/map")
-            position[3], quaternion[3] = self.tf.lookupTransform("/jesus_more_fucking_happy_thoughts", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/jesus_more_fucking_happy_thoughts", self.tf.getLatestCommonTime("/map", "/jesus_more_fucking_happy_thoughts"))
+
             rospy.loginfo("#3")
-            temppos = {'x': position[3][0], 'y': position[3][2]}
-            rospy.loginfo(temppos)
+            position[3] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[3])
             detected[3] = True
 
         if self.tf.frameExists("/fuuuuuuuuuuckkkkkk") and self.tf.frameExists("/map") and detected[4] == False:
-            t = self.tf.getLatestCommonTime("/fuuuuuuuuuuckkkkkk", "/map")
-            position[4], quaternion[4] = self.tf.lookupTransform("/fuuuuuuuuuuckkkkkk", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/fuuuuuuuuuuckkkkkk", self.tf.getLatestCommonTime("/map", "/fuuuuuuuuuuckkkkkk"))
+
             rospy.loginfo("#4")
-            temppos = {'x': position[]4[0], 'y': position[4][2]}
-            rospy.loginfo(temppos)
+            position[4] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[4])
             detected[4] = True
 
         if self.tf.frameExists("/five") and self.tf.frameExists("/map") and detected[5] == False:
-            t = self.tf.getLatestCommonTime("/five", "/map")
-            position[5], quaternion[5] = self.tf.lookupTransform("/five", "/map", t)
+
+            #Get Transform
+            tempos, temqua = self.tf.lookupTransform("/map", "/five",  self.tf.getLatestCommonTime("/map", "/five"))
+
             rospy.loginfo("#5")
-            temppos = {'x': position[2][0], 'y': position[2][2]}
-            rospy.loginfo(temppos)
+            position[5] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
+            quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
+            rospy.loginfo(position[5])
             detected[5] = True
-            
-##        if data.transforms[0].child_frame_id == "happy_thoughts" and detected [0] == False: 
-##           translationx[0] = data.transforms[0].transform.translation.x
-##           translationy[0] = data.transforms[0].transform.translation.y
-##           translationz[0] = data.transforms[0].transform.translation.z
-##           rospy.loginfo("#1")
-##           detected[0] = True
-##
-##        if data.transforms[0].child_frame_id == "fucking_happy_thoughts" and detected[1] == False:
-##           translationx[1] = data.transforms[0].transform.translation.x
-##           translationy[1] = data.transforms[0].transform.translation.y
-##           translationz[1] = data.transforms[0].transform.translation.z
-##           rospy.loginfo("#2")
-##           detected[1] = True
-##    
-##        if data.transforms[0].child_frame_id == "more_fucking_happy_thoughts" and detected[2] == False:
-##           translationx[2] = data.transforms[0].transform.translation.x
-##           translationy[2] = data.transforms[0].transform.translation.y
-##           translationz[2] = data.transforms[0].transform.translation.z
-##           rospy.loginfo(data.transforms[0].transform.translation)
-##           rospy.loginfo("#3")
-##           detected[2] = True   
-##    
-##        if data.transforms[0].child_frame_id == "jesus_more_fucking_happy_thoughts" and detected[3] == False:
-##           translationx[3] = data.transforms[0].transform.translation.x
-##           translationy[3] = data.transforms[0].transform.translation.y
-##           translationz[3] = data.transforms[0].transform.translation.z
-##           rospy.loginfo("#4")
-##           detected[3] = True
-##    
-##        if data.transforms[0].child_frame_id == "fuuuuuuuuuuckkkkkk" and detected[4] == False:
-##           translationx[4] = data.transforms[0].transform.translation.x
-##           translationy[4] = data.transforms[0].transform.translation.y
-##           translationz[4] = data.transforms[0].transform.translation.z
-##           rospy.loginfo("#5")
-##           detected[4] = True
-##
-##        if data.transforms[0].child_frame_id == "five" and detected[5] == False:
-##           translationx[5] = data.transforms[0].transform.translation.x
-##           translationy[5] = data.transforms[0].transform.translation.y
-##           translationz[5] = data.transforms[0].transform.translation.z
-##           rospy.loginfo("#5")
-##           detected[5] = True
 
         if sum(detected) == 6:
           rospy.loginfo("youdidit");
-          rospy.sleep(30);
-          success = self.goto(position[0], quaternion[0])
+          rospy.sleep(1);
+          success = self.return_to_sender(0)
+          success = self.return_to_sender(1)
+          success = self.return_to_sender(2)
+          success = self.return_to_sender(3)
+          success = self.return_to_sender(4)
+          success = self.return_to_sender(5)
           if success:
             rospy.loginfo("Hooray, reached the desired pose")
           else:
             rospy.loginfo("The base failed to reach the desired pose")
 
+
     def listener(self):
         global initialrun
-        position = {'x': .5, 'y' : 1}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+        # position = {'x': .5, 'y' : 1}
+        # quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
         #rospy.init_node('listener', anonymous = True)
         #rospy.sleep(30); #Game plan for now is to map tags in teleop, store coordinates, when all tags hit, sleep, close out of teleop, then begin navigtion routine to all tags.
+	rospy.sleep(1);
         rospy.Subscriber('tf',TFMessage,self.callback)
+        # rospy.Subscriber('tf',TFMessage,self.update_position)
         if initialrun == True:
            # success = self.goto(position, quaternion)
             initialrun = False
@@ -210,10 +203,13 @@ if __name__ == '__main__':
         rospy.init_node('nav_test', anonymous=False)
         navigator = GoToPose()
         # Customize the following values so they are appropriate for your location
-        position = {'x': .5, 'y' : 1}
-        quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
-	rospy.loginfo(Point());
-        rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
+        # position = {'x': .5, 'y' : 1}
+        # quaternion = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+	# rospy.loginfo(Point());
+        # rospy.loginfo("Go to (%s, %s) pose", position['x'], position['y'])
+	# detected[3] = True
+	# detected[4] = True
+	# detected[5] = True
         navigator.listener();
         #success = navigator.goto(position, quaternion)
 
