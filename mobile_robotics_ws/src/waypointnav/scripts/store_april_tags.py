@@ -7,10 +7,12 @@
 # For simulation: launch gazebo world & amcl_demo prior to run this script
 
 import rospy
+import sys
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 import actionlib
 from actionlib_msgs.msg import *
 from geometry_msgs.msg import Pose, Point, Quaternion
+from nav_msgs.msg import OccupancyGrid
 #from apriltags_ros.msg import AprilTagDetection
 from tf2_msgs.msg import TFMessage
 from tf import TransformListener
@@ -21,8 +23,10 @@ tagframe1    = "0"
 position = ["0","0","0","0","0","0"]
 quaternion = ["0","0","0","0","0","0"]
 quaternion_true = {'r1' : 0.000, 'r2' : 0.000, 'r3' : 0.000, 'r4' : 1.000}
+
 curr_pos = {'x': 0, 'y': 0, 'z': 0}
-     
+
+map_data = OccupancyGrid()
    
 class GoToPose():
     
@@ -102,6 +106,7 @@ class GoToPose():
 	    return
 
         if self.tf.frameExists("/happy_thoughts") and self.tf.frameExists("/map") and detected[0] == False:
+            detected[0] = True
 
             #Get Transform
             tempos, temqua = self.tf.lookupTransform("/map", "/happy_thoughts", self.tf.getLatestCommonTime("/map", "/happy_thoughts"))
@@ -110,8 +115,10 @@ class GoToPose():
             position[0] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
             quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
             rospy.loginfo(position[0])
+	    rospy.loginfo(map_data.data[0])
+	    # rospy.loginfo(int((position[0]['x'] * 20) + (position[0]['y'] * 20 * map_data['h'])))
+	    # rospy.loginfo(map_grid[int((position[0]['x'] * 20 * map_data['w']) + (position[0]['y'] * 20))])
             # rospy.loginfo(quaternion[0])
-            detected[0] = True
 
         if self.tf.frameExists("/fucking_happy_thoughts") and self.tf.frameExists("/map") and detected[1] == False:
 
@@ -152,14 +159,9 @@ class GoToPose():
             tempos, temqua = self.tf.lookupTransform("/map", "/fuuuuuuuuuuckkkkkk", self.tf.getLatestCommonTime("/map", "/fuuuuuuuuuuckkkkkk"))
 
             rospy.loginfo("#4")
-<<<<<<< HEAD
             position[4] = {'x': tempos[0], 'y': tempos[1], 'z': tempos[2]}
             quaternion[0] = {'r1': temqua[0],'r2': temqua[1],'r3': temqua[2],'r4': temqua[3]}
             rospy.loginfo(position[4])
-=======
-            temppos = {'x': position[4][0], 'y': position[4][2]}
-            rospy.loginfo(temppos)
->>>>>>> 8effdfff6d057eabd674ba631d8af04f11bb3cc2
             detected[4] = True
 
         if self.tf.frameExists("/five") and self.tf.frameExists("/map") and detected[5] == False:
@@ -188,6 +190,11 @@ class GoToPose():
             rospy.loginfo("The base failed to reach the desired pose")
 
 
+    def update_position(self,data):
+	global map_data = data
+	rospy.loginfo(sys.getsizeof(map_data.data))
+	return
+
     def listener(self):
         global initialrun
         # position = {'x': .5, 'y' : 1}
@@ -196,7 +203,7 @@ class GoToPose():
         #rospy.sleep(30); #Game plan for now is to map tags in teleop, store coordinates, when all tags hit, sleep, close out of teleop, then begin navigtion routine to all tags.
 	rospy.sleep(1);
         rospy.Subscriber('tf',TFMessage,self.callback)
-        # rospy.Subscriber('tf',TFMessage,self.update_position)
+        rospy.Subscriber('map',OccupancyGrid,self.update_position)
         if initialrun == True:
            # success = self.goto(position, quaternion)
             initialrun = False
