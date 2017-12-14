@@ -11,7 +11,7 @@ from geometry_msgs.msg import Twist
 # global variables
 bump = False
 action_duration = 0.5
-movement_speed = 0.15
+movement_speed = 0.2
 turn_speed = 0.5
 min_turn_duration = 3.5
 max_turn_duration = 10.5
@@ -26,21 +26,15 @@ def processSensing(BumperEvent):
           bump = bumper_num
      else:
           bump = -1
-     #newInfo = True
      
 def random_walk():
      pub = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
      rospy.Subscriber('/mobile_base/events/bumper', BumperEvent, processSensing)
      rospy.init_node('random_walk')
-     # move_base = actionlib.SimpleActionClient("move_base", MoveBaseAction)
-     # rospy.loginfo("wait for the action server to come up")
-     # #allow up to 5 seconds for the action server to come up
-     # self.move_base.wait_for_server(rospy.Duration(5))
-
-     # goal = MoveBaseGoal()
 
      #listen
      global bump
+     bump = -1
      twist = Twist()
      turn_direction = True
 
@@ -50,41 +44,26 @@ def random_walk():
              rospy.loginfo(str)
 
              if turn_direction:
+                move_straight(pub, 0.25, -movement_speed)
                 turn(pub, random_duration(), turn_speed)
-                move_straight(pub, 0.25)
+                move_straight(pub, 1.5, movement_speed)
                 turn(pub, random_duration(), turn_speed)
+                turn_direction = False
              else:
+                move_straight(pub, 0.25, -movement_speed)
                 turn(pub, random_duration(), -turn_speed)
-                move_straight(pub, 0.25)
+                move_straight(pub, 1.5, movement_speed)
                 turn(pub, random_duration(), -turn_speed)
-
-         # if bump==2:
-         #     str = "right bumper, turning left %s"%rospy.get_time()
-         #     rospy.loginfo(str)
-         #     turn(pub, random_duration(), turn_speed)
-         #     move_straight(0.25)
-         #     turn(pub, random_duration(), turn_speed)
-         # elif bump==0:
-         #     str = "left bumper, turning right %s"%rospy.get_time()
-         #     rospy.loginfo(str)
-         #     turn(pub, random_duration(), -turn_speed)
-         # elif bump==1:
-         #     str = "front bumper, turning left %s"%rospy.get_time()
-         #     rospy.loginfo(str)
-         #     turn(pub, random_duration(), turn_speed)
+                turn_direction = True
+             bump = -1
          else:
              str = "moving straight ahead %s"%rospy.get_time()
              rospy.loginfo(str)
-             move_straight(pub, 0.5)
-             # twist.linear.x = movement_speed
-             # twist.angular.z = 0
-             # pub.publish(twist)
-         bump = -1
-         rospy.sleep(action_duration)
+             move_straight(pub, 0.5, movement_speed)
          
-def move_straight(pub, duration):
+def move_straight(pub, duration, speed):
     twist = Twist()
-    twist.linear.x = movement_speed
+    twist.linear.x = speed
     twist.angular.z = 0
     pub.publish(twist)
     rospy.sleep(duration)
@@ -98,11 +77,6 @@ def random_duration():
 
 def turn(pub, duration, weight):
     twist = Twist()
-    # First, back up slightly from the wall
-    twist.linear.x = -movement_speed; twist.linear.y = 0; twist.linear.z = 0
-    twist.angular.x = 0; twist.angular.y = 0; twist.angular.z = 0
-    pub.publish(twist)
-    rospy.sleep(action_duration)
 
     # Now, keep turning until the end of the specified duration
     currentTime = rospy.get_time();
